@@ -595,6 +595,131 @@ export const entries: Entry[] = [
       cite: "Joel Gascoigne, founder of Buffer",
     },
   },
+  {
+    slug: "gumroad",
+    name: "Gumroad",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/gumroad-then.png",
+    thenCaption: "gumroad.com, 2011 — built over one weekend to sell a single icon.",
+    thenYear: 2011,
+    nowImage: "/screenshots/gumroad-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Sahil Lavingia built the first version of Gumroad over a single weekend — a barebones file-uploader with a credit-card form — so he could sell a $1.99 icon he'd designed. He launched it Monday morning on Hacker News.",
+    sourceUrl: "https://sahillavingia.com/reflecting",
+    founderName: "Sahil Lavingia",
+    founderLink: "https://sahillavingia.com",
+    productUrl: "https://gumroad.com",
+    lead: "Sahil Lavingia built Gumroad in a weekend — a file uploader bolted to a credit-card form — to sell one icon.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "It was, in Sahil Lavingia's telling, barely a product: a way to upload a file, slap a price on it, and take a credit card. He built the whole thing over a weekend so he could sell a $1.99 icon he'd designed, then posted it to Hacker News on Monday morning.",
+      },
+      {
+        lead: "What he shipped anyway.",
+        text: "No store to set up, no dashboard to learn — just a link you could charge for. That single-link simplicity was the entire pitch, and it was enough to start taking real money for digital goods right away.",
+      },
+      {
+        lead: "Now.",
+        text: "A creator-commerce platform that's paid out billions to writers, musicians, and makers — still 'sell anything with a link.'",
+      },
+    ],
+    fileStats: [
+      { label: "Built in", value: "a weekend" },
+      { label: "First sale", value: "a $1.99 icon" },
+      { label: "Launched on", value: "Hacker News" },
+    ],
+    lesson: "The first version can be one feature. A link that takes money beat a store nobody asked for.",
+    quote: {
+      text: "I built Gumroad the weekend I thought up the idea, and launched it early Monday morning on Hacker News.",
+      cite: "Sahil Lavingia, founder of Gumroad",
+    },
+  },
+  {
+    slug: "indie-hackers",
+    name: "Indie Hackers",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/indie-hackers-then.png",
+    thenCaption: "indiehackers.com, launch day 2016 — a handful of interviews Courtland ran himself.",
+    thenYear: 2016,
+    nowImage: "/screenshots/indie-hackers-now.jpg",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Courtland Allen launched Indie Hackers as a tiny blog of about ten founder interviews he'd conducted by hand — emailing and interviewing founders himself over three weeks — before there was any community or product. Stripe acquired it within a year.",
+    sourceUrl: "https://podcast.creatorscience.com/courtland-allen/",
+    founderName: "Courtland Allen",
+    productUrl: "https://www.indiehackers.com",
+    lead: "Before any community existed, Courtland Allen hand-collected ten founder interviews — and launched on those alone.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "There was no product, no forum, no software — just a simple no-code site. Courtland Allen spent three weeks personally emailing founders and writing up about ten interviews on how they actually made money, then launched with nothing but those.",
+      },
+      {
+        lead: "What he shipped anyway.",
+        text: "Hand-curated stories were the whole product — and exactly what indie founders wanted to read. The interviews spread, a community formed around them, and Stripe acquired Indie Hackers within a year of launch.",
+      },
+      {
+        lead: "Now.",
+        text: "The home of the build-in-public movement — a community and podcast where thousands of founders share exactly how their products make money.",
+      },
+    ],
+    fileStats: [
+      { label: "Launched with", value: "~10 hand-run interviews" },
+      { label: "Built in", value: "3 weeks, by hand" },
+      { label: "Acquired by", value: "Stripe, within a year" },
+    ],
+    tactics: ["dont-scale", "ugly-v1"],
+    lesson: "Do the unscalable thing — interview ten people yourself. Hand-made beats automated when you have zero audience.",
+    quote: {
+      text: "I spent three weeks collecting 10 or 11 interviews that everybody read and launched immediately.",
+      cite: "Courtland Allen, founder of Indie Hackers",
+    },
+  },
+  {
+    slug: "plausible",
+    name: "Plausible",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/plausible-then.png",
+    thenCaption: "plausible.io in its early days — a scrappy open-source alternative to Google Analytics, built in public.",
+    thenYear: 2019,
+    nowImage: "/screenshots/plausible-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Uku Täht started Plausible in 2018 as a scrappy open-source alternative to Google Analytics, building it in public on Indie Hackers from the first line of code. He and Marko Saric grew it post by post — beta, paid launch, every milestone shared — into a bootstrapped business.",
+    sourceUrl: "https://plausible.io/blog/bootstrapping-saas",
+    founderName: "Uku Täht & Marko Saric",
+    productUrl: "https://plausible.io",
+    lead: "Uku Täht built Plausible in the open on Indie Hackers — every beta, price, and milestone posted as he went.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "No funding, no team, no launch splash — just an open-source side project Uku Täht started posting about on Indie Hackers as he wrote the first lines of code. The early beta was bare-bones, shipped mainly to recruit its first handful of users.",
+      },
+      {
+        lead: "What they shipped anyway.",
+        text: "Uku and co-founder Marko Saric grew it transparently, milestone by milestone — the beta, the first paid subscriptions, every revenue number — turning a privacy-first analytics tool into a real bootstrapped business in full public view.",
+      },
+      {
+        lead: "Now.",
+        text: "A profitable, independent alternative to Google Analytics — privacy-first, EU-hosted, and still bootstrapped.",
+      },
+    ],
+    fileStats: [
+      { label: "Started", value: "2018, open-source" },
+      { label: "Built", value: "in public on Indie Hackers" },
+      { label: "Funding", value: "none — bootstrapped" },
+    ],
+    lesson: "Build in the open from line one. Posting every scrappy step is how you find your first users.",
+    quote: {
+      text: "My co-founder Uku started posting on Indie Hackers as he began to develop Plausible.",
+      cite: "Marko Saric, co-founder of Plausible",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
