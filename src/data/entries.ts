@@ -468,6 +468,48 @@ export const entries: Entry[] = [
       cite: "Mark Gainey, co-founder of Strava",
     },
   },
+  {
+    slug: "doordash",
+    name: "DoorDash",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/doordash-then.jpg",
+    thenCaption: "PaloAltoDelivery.com, 2013 — $6 flat, order online, the founders drove every order themselves.",
+    thenYear: 2013,
+    nowImage: "/screenshots/doordash-now.jpg",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Tony Xu, Stanley Tang, Andy Fang and Evan Moore launched it as PaloAltoDelivery.com — a bare page offering $6 delivery from Palo Alto restaurants that had none. There was no fleet: the four Stanford students drove every order themselves, students by day and couriers by night.",
+    sourceUrl: "https://www.sequoiacap.com/podcast/crucible-moments-doordash/",
+    founderName: "Tony Xu, Stanley Tang, Andy Fang & Evan Moore",
+    productUrl: "https://www.doordash.com",
+    lead: "Tony Xu and three Stanford classmates were the entire delivery fleet — a $6-a-drop page, and them behind the wheel.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "PaloAltoDelivery.com was a one-page site offering $6 delivery from local restaurants that didn't deliver — no minimum, pay on the doorstep. Behind it was no operation at all: orders pinged the founders' phones, and Tony Xu, Stanley Tang, Andy Fang and Evan Moore drove them around Palo Alto themselves.",
+      },
+      {
+        lead: "What they did that didn't scale.",
+        text: "Students by day, couriers by night. They took the orders, called the restaurants, picked up the food, and delivered it — learning the logistics by living them, weeks before they had a name, a fleet, or the YC check that turned it into DoorDash.",
+      },
+      {
+        lead: "Now.",
+        text: "The largest food-delivery platform in the US, a public company moving billions of orders a year — still the thing those four were hand-delivering one bag at a time.",
+      },
+    ],
+    fileStats: [
+      { label: "Founded", value: "2013" },
+      { label: "Day-one fleet", value: "the 4 founders" },
+      { label: "First site", value: "PaloAltoDelivery.com" },
+    ],
+    tactics: ["dont-scale", "ugly-v1"],
+    lesson: "Run the operation by hand first — you can't design logistics you've never personally done.",
+    quote: {
+      text: "At the time, everyone at the company, we're the only ones doing deliveries.",
+      cite: "Tony Xu, co-founder of DoorDash",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
