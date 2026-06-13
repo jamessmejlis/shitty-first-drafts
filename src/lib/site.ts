@@ -4,6 +4,7 @@ export const siteUrl =
 // Working name — pending James's community naming poll.
 export const siteName = "Started Ugly";
 export const tagline = "Every product you admire started ugly. Ship yours.";
+export const motto = "function over form";
 export const hoffmanQuote =
   "If you aren't embarrassed by the first version of your product, you've shipped too late.";
 

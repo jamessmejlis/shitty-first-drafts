@@ -4,22 +4,38 @@ title: "Ugly MVP: <your product name>"
 labels: [submission]
 body:
   - type: input
-    id: product
-    attributes: { label: Product name + URL }
+    id: handle
+    attributes:
+      label: Your handle
+      placeholder: "@yourname"
     validations: { required: true }
   - type: input
-    id: founder
-    attributes: { label: Your name + X/LinkedIn link }
+    id: product
+    attributes:
+      label: Product
+      placeholder: What's it called?
+    validations: { required: true }
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      placeholder: https://
     validations: { required: true }
   - type: textarea
     id: story
     attributes:
-      label: What did you ship, and what's embarrassing about it?
+      label: What's embarrassing about it?
       description: Ugly screens, manual hacks, selling before building, duct-taped demos — all count.
     validations: { required: true }
+  - type: input
+    id: tactics
+    attributes:
+      label: Tactics
+      description: "Which apply? Ugly v1 · Did things that don't scale · Sold it first · Duct-taped it"
+    validations: { required: false }
   - type: textarea
     id: screenshot
     attributes:
       label: Screenshot of the ugly version
-      description: Drag and drop an image here.
+      description: Drag and drop your ugly v1 screenshot here — this is where it's stored.
     validations: { required: true }

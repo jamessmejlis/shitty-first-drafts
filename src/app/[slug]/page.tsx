@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { NewsletterEmbed } from "@/components/NewsletterEmbed";
-import { ShareLinks } from "@/components/ShareLinks";
-import { entries, getEntry, TACTIC_LABELS } from "@/data/entries";
-import { siteUrl } from "@/lib/site";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { SiteHeader } from "@/components/SiteHeader";
+import {
+  entries,
+  firstEntryWithTactic,
+  getEntry,
+  TACTIC_LABELS,
+} from "@/data/entries";
 
 export const dynamicParams = false;
 
@@ -23,7 +26,7 @@ export async function generateMetadata({
   if (!entry) return {};
   return {
     title: `${entry.name} started ugly`,
-    description: entry.story,
+    description: entry.lead ?? entry.story,
   };
 }
 
@@ -33,82 +36,142 @@ export default async function EntryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const entry = getEntry(slug);
-  if (!entry) notFound();
+  const idx = entries.findIndex((e) => e.slug === slug);
+  if (idx === -1) notFound();
+  const entry = entries[idx];
 
-  const shareText = entry.nowYear
-    ? `${entry.name}, ${entry.thenYear} → ${entry.nowYear}. It started ugly.`
-    : `${entry.name} just shipped ugly. Your move.`;
+  const number = idx + 1;
+  const prev = entries[idx - 1];
+  const next = entries[idx + 1];
+  const era = entry.name.toUpperCase();
+
+  const tactics = entry.tactics ?? [entry.tactic];
+  const fileStats = entry.fileStats ?? [{ label: "Founded", value: String(entry.thenYear) }];
+  const lead = entry.lead ?? entry.thenCaption;
 
   return (
-    <main>
-      <p>
-        <Link href="/">← All ugly MVPs</Link>
-      </p>
-      <h1>{entry.name}</h1>
-      <span className="badge">{TACTIC_LABELS[entry.tactic]}</span>
-      <section className="pair">
-        <div>
-          <h2>{entry.thenYear}</h2>
-          <Image
-            src={entry.thenImage}
-            alt={`${entry.name} in ${entry.thenYear}`}
-            width={1280}
-            height={960}
+    <div className="wrap">
+      <SiteHeader variant="back" />
+
+      <article className="entry">
+        <div className="kicker">Hall of fame — no. {number}</div>
+        <div className="entry__title-row">
+          <h1 className="entry__name">{entry.name}</h1>
+          <span className="entry__est">Est. {entry.thenYear}</span>
+        </div>
+        {lead && <p className="entry__lead">{lead}</p>}
+
+        <div className="ba-frame">
+          <BeforeAfter
+            height={360}
             priority
-            sizes="(max-width: 600px) 100vw, 50vw"
+            beforeSrc={entry.thenImage}
+            afterSrc={entry.nowImage ?? entry.thenImage}
+            beforeAlt={`${entry.name} in ${entry.thenYear}`}
+            afterAlt={`${entry.name} in ${entry.nowYear ?? "now"}`}
+            beforeBadge={`${era} · ${entry.thenYear}`}
+            afterBadge={`${era} · ${entry.nowYear ?? "now"}`}
           />
-          {entry.thenCaption && <p>{entry.thenCaption}</p>}
         </div>
-        <div>
-          {entry.nowImage ? (
-            <>
-              <h2>{entry.nowYear}</h2>
-              <Image
-                src={entry.nowImage}
-                alt={`${entry.name} in ${entry.nowYear}`}
-                width={1280}
-                height={960}
-                sizes="(max-width: 600px) 100vw, 50vw"
-              />
-            </>
+        <p className="caption">
+          Drag the handle — {entry.name}, {entry.thenYear} → {entry.nowYear ?? "now"}.
+        </p>
+
+        <div className="entry__body">
+          <div>
+            {entry.body ? (
+              entry.body.map((p, i) => (
+                <p className="entry__p" key={i}>
+                  <b className="entry__p-lead">{p.lead}</b> {p.text}
+                </p>
+              ))
+            ) : (
+              <p className="entry__p">{entry.story}</p>
+            )}
+            {entry.sourceUrl && (
+              <p className="entry__source">
+                <a
+                  className="link"
+                  href={entry.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source ↗
+                </a>
+              </p>
+            )}
+            {entry.kind === "community" && entry.founderName && (
+              <p className="entry__source">
+                Shipped by{" "}
+                <a className="link" href={entry.founderLink} rel="noopener noreferrer">
+                  {entry.founderName}
+                </a>
+                {entry.productUrl && (
+                  <>
+                    {" — "}
+                    <a className="link" href={entry.productUrl} rel="noopener noreferrer">
+                      see it live
+                    </a>
+                  </>
+                )}
+              </p>
+            )}
+          </div>
+
+          <aside className="entry__file">
+            <div className="file-label">The file</div>
+            <div className="file-rows">
+              {fileStats.map((s) => (
+                <div className="file-row" key={s.label}>
+                  <span>{s.label}</span>
+                  <span>{s.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="file-label" style={{ marginTop: 16 }}>
+              Tactics used
+            </div>
+            <div className="file-tactics">
+              {tactics.map((t) => {
+                const target = firstEntryWithTactic(t);
+                return target ? (
+                  <div key={t}>
+                    <Link href={`/${target.slug}`} className="link">
+                      {TACTIC_LABELS[t]}
+                    </Link>
+                  </div>
+                ) : (
+                  <div key={t}>{TACTIC_LABELS[t]}</div>
+                );
+              })}
+            </div>
+
+            {entry.lesson && <div className="entry__lesson">The lesson: {entry.lesson}</div>}
+          </aside>
+        </div>
+
+        <nav className="prevnext">
+          {prev ? (
+            <Link href={`/${prev.slug}`}>
+              ‹ Prev · {prev.name} (no. {idx})
+            </Link>
           ) : (
-            <>
-              <h2>Now: TBD</h2>
-              <p>They just shipped. Check back.</p>
-            </>
+            <span className="spacer" aria-hidden="true">
+              ‹
+            </span>
           )}
-        </div>
-      </section>
-      <p>{entry.story}</p>
-      {entry.sourceUrl && (
-        <p>
-          <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">
-            Source
-          </a>
-        </p>
-      )}
-      {entry.kind === "community" && entry.founderName && (
-        <p>
-          Shipped by{" "}
-          <a href={entry.founderLink} rel="noopener noreferrer">
-            {entry.founderName}
-          </a>
-          {entry.productUrl && (
-            <>
-              {" — "}
-              <a href={entry.productUrl} rel="noopener noreferrer">
-                see it live
-              </a>
-            </>
+          {next ? (
+            <Link href={`/${next.slug}`}>
+              Next · {next.name} (no. {idx + 2}) ›
+            </Link>
+          ) : (
+            <span className="spacer" aria-hidden="true">
+              ›
+            </span>
           )}
-        </p>
-      )}
-      <ShareLinks url={`${siteUrl}/${entry.slug}`} text={shareText} />
-      <p>
-        <Link href="/submit">Your turn — submit your ugly MVP →</Link>
-      </p>
-      <NewsletterEmbed />
-    </main>
+        </nav>
+      </article>
+    </div>
   );
 }

@@ -2,9 +2,10 @@
 
 Two ways in:
 
-## 1. The form (no GitHub needed)
-Use [the submit page](https://ugly.marulho.co/submit). James replies personally
-to collect your screenshot.
+## 1. The form
+Use [the submit page](https://ugly.marulho.co/submit). It opens a pre-filled
+GitHub issue from your answers — drag your ugly v1 screenshot into the issue and
+hit submit. (You'll need a GitHub account; the screenshot is stored on the issue.)
 
 ## 2. Pull request
 1. Fork the repo.

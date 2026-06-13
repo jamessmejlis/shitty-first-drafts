@@ -1,13 +1,29 @@
 import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { TodoSeam } from "@/components/TodoSeam";
 
 export default function NotFound() {
   return (
-    <main>
-      <h1>404</h1>
-      <p>This page doesn&apos;t exist — unlike your MVP, which should.</p>
-      <p>
-        <Link href="/">← All ugly MVPs</Link> · <Link href="/submit">Submit your ugly MVP</Link>
-      </p>
-    </main>
+    <div className="wrap">
+      <SiteHeader />
+
+      <div className="notfound">
+        <div className="kicker">Error — page not found</div>
+        <div className="notfound__num">404</div>
+        <h1 className="notfound__h">This page shipped, then vanished.</h1>
+        <p className="notfound__lead">
+          Either it never existed or it wasn&apos;t ready. Very on-brand for us. Keep moving.
+        </p>
+        <div className="notfound__links">
+          <Link href="/" className="link">
+            ‹ Back to the directory
+          </Link>
+          <Link href="/submit" className="link">
+            Submit an ugly start →
+          </Link>
+        </div>
+        <TodoSeam lines={["// TODO: build a real 404. this one will do for now."]} />
+      </div>
+    </div>
   );
 }

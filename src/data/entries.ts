@@ -22,6 +22,15 @@ export type Entry = {
   founderName?: string; // community only
   founderLink?: string; // community only
   productUrl?: string; // community only
+
+  // Optional rich content for the entry detail page (the design's full layout).
+  // When absent, the detail page degrades gracefully to the single `story`.
+  lead?: string; // italic lead sentence under the title
+  body?: { lead: string; text: string }[]; // labelled paragraphs ("The ugly part." …)
+  fileStats?: { label: string; value: string }[]; // "The file" key/value rows
+  tactics?: Tactic[]; // multiple tactics (defaults to [tactic])
+  lesson?: string; // italic "The lesson:" note
+  featuredCard?: { before: string; now: string }; // home featured-card blurb
 };
 
 export const entries: Entry[] = [
@@ -77,6 +86,34 @@ export const entries: Entry[] = [
     story:
       "When listings looked bad, the founders flew to New York and photographed hosts' apartments themselves — and funded the company selling $40 election-themed cereal boxes.",
     sourceUrl: "https://web.archive.org/web/20081219124926/http://airbedandbreakfast.com/",
+    lead: "Three guys who couldn't make rent put air mattresses on their floor — and a craigslist clone online to fill them.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "A one-page site cloned from craigslist. Grey placeholder photos, no map, no payments, no reviews. To book, you emailed the host and hoped they were real. The founders funded it selling novelty cereal door to door.",
+      },
+      {
+        lead: "What they shipped anyway.",
+        text: "They charged real money before any of it worked. Three guests, two weeks of rent covered — enough signal to keep building the parts they'd faked.",
+      },
+      {
+        lead: "Now.",
+        text: "A public company worth roughly $90B, hosting more than 5 million stays a night across 220+ countries.",
+      },
+    ],
+    fileStats: [
+      { label: "Founded", value: "2008" },
+      { label: "Time to first $", value: "~2 weeks" },
+      { label: "Day-one stack", value: "HTML + email" },
+    ],
+    tactics: ["ugly-v1", "dont-scale", "sold-first"],
+    lesson:
+      "Charge before it's ready. Three strangers on air mattresses was enough proof.",
+    featuredCard: {
+      before:
+        "three air mattresses on a stranger's floor, breakfast included, booked over email.",
+      now: "a public company worth ~$90B, 5M+ stays a night.",
+    },
   },
   {
     slug: "dropbox",
@@ -97,3 +134,17 @@ export const entries: Entry[] = [
 export const famousEntries = entries.filter((e) => e.kind === "famous");
 export const communityEntries = entries.filter((e) => e.kind === "community");
 export const getEntry = (slug: string) => entries.find((e) => e.slug === slug);
+
+// The entry the home page leads with (hero before/after + featured card).
+export const FEATURED_SLUG = "airbnb";
+export const featuredEntry = getEntry(FEATURED_SLUG) ?? famousEntries[0] ?? entries[0];
+
+// 1-based catalog position, used for the honest "no. N" labels.
+export const entryNumber = (slug: string) => entries.findIndex((e) => e.slug === slug) + 1;
+
+// Display order for the "Browse by tactic" list (matches the four house tactics).
+export const TACTIC_ORDER: Tactic[] = ["ugly-v1", "dont-scale", "sold-first", "duct-tape-demo"];
+
+export const tacticCount = (t: Tactic) => entries.filter((e) => e.tactic === t).length;
+
+export const firstEntryWithTactic = (t: Tactic) => entries.find((e) => e.tactic === t);
