@@ -217,6 +217,71 @@ sources that surface entries Wayback alone won't.
 
 ---
 
+## Personal picks — individual candidates (James's shortlist)
+
+Specific stories to seed — not a systematic batch. Each is a single research
+task: confirm the story, capture a sourced "then" artifact, slot the entry into
+the matching tactic/batch, and de-dup against existing entries. Same gate +
+conventions apply (name the founder, quote where it lands, fact-check).
+
+- [ ] **Uri Levine — Waze (and his serial startups).** Problem-first philosophy
+  ("fall in love with the problem"); Waze's early product was a map crowdsourced
+  by its own users driving around with the app running. `tactic`: `dont-scale`
+  (the users *were* the mapping team) or `ugly-v1`. "Then" artifact: an early
+  Waze / FreeMap app screenshot (app store or Wayback). Lead with Waze — one entry
+  per company — but his other startups (Moovit, etc.) and the book are
+  quote/lesson sources. Levine is a strong quote source and a networking target.
+- [ ] **Jake Knapp & John Zeratsky — sprint prototypes (*Sprint* / *Click* +
+  Character investments).** Their whole method is to fake the product as a
+  prototype and test it before building anything — pure `duct-tape-demo`. Mine the
+  books and their Character Capital portfolio for companies that prototyped before
+  building; could yield several entries. "Then" artifact: a published prototype/
+  facade screenshot, else a quote-card. Lesson: test a fake before you build the
+  real thing.
+- [ ] **MacroFactor — a Google-Drive spreadsheet before the app.** The macro-
+  tracking app (Stronger By Science) reportedly started as a shared spreadsheet
+  before it was ever an app — textbook `ugly-v1` spreadsheet MVP. "Then" artifact:
+  a screenshot of the spreadsheet, or an early `macrofactorapp.com` Wayback
+  capture. Indie/bootstrapper (Batch 4/5). Already cited in PRODUCT-PLAYBOOK.md
+  (founder answers 150–200 questions/day). Verify the spreadsheet origin at seeding.
+- [ ] **James Dyson — 5,127 prototypes.** The bagless vacuum took 5,126 failed
+  prototypes before the one that worked — relentless `ugly-v1` iteration, physical
+  product (Batch 6). "Then" artifact: an early hand-made/cardboard cyclone
+  prototype photo (Dyson has published these); before/after = prototype №1 → the
+  production DC01 or a modern Dyson. Lesson: the famous number is the failures, not
+  the success.
+- [ ] **SpaceX — Raptor engine evolution (v1 → v2 → v3).** The recently-viral
+  side-by-side photo of three Raptor versions shows dramatic simplification (a
+  plumbing nightmare → a clean engine) — a literal visual before/after, `ugly-v1`
+  / iterate, hardware (Batch 6). "Then" artifact: the official comparison photo
+  (or Raptor 1 as "then", Raptor 3 as "now"). Caveat: use an officially-posted
+  image and credit SpaceX/Musk; confirm licensing. (Not indie, but the iteration
+  visual is perfect for the directory.)
+
+**More from PRODUCT-PLAYBOOK.md (`~/Developer/PRODUCT-PLAYBOOK.md`):**
+
+- [ ] **Pieter Levels — NomadList (a public Google Sheet).** Tweeted a public
+  spreadsheet, it went viral, and he built the real site only after seeing demand
+  — `ugly-v1` / `sold-first`, indie (Batch 4). Pairs with the MacroFactor
+  spreadsheet story. "Then": the Sheet / early `nomadlist.com` Wayback. His "ship
+  in days, charge day one" rules are quote material.
+- [ ] **Nathan Barry — ConvertKit.** Hand-emailed bloggers off Trello boards and
+  offered free concierge migration; $1.5K → $100K MRR in a year on direct sales —
+  `dont-scale` / `sold-first`, bootstrapper (Batch 5).
+- [ ] **Arvid Kahl — FeedbackPanda.** Grew from one in-context comment in a
+  Facebook group for online teachers to $55K MRR with two people and no ads —
+  `dont-scale`, bootstrapper (Batch 5).
+- [ ] **DoorDash — PaloAltoDelivery.com.** The first "product" was a static page
+  with PDF menus; the founders did the deliveries themselves before any app —
+  `dont-scale` / `ugly-v1`. "Then": the famously bare PaloAltoDelivery.com Wayback
+  capture.
+- [ ] *De-dup note: the playbook also surfaces Stripe (Collison installation),
+  Product Hunt (Linkydink email list), Uber (hand-recruited drivers), Etsy (craft-
+  fair reps) and Strava (20 cyclists + free Garmins) — all already in the spec's
+  Batch 0 candidate pool. Pull them from there; don't double-add.*
+
+---
+
 ## Open decisions
 
 - **`nowStat?` field** (MRR / user counts). See Batch 2. Decide when the first
