@@ -7,11 +7,10 @@ import { TodoSeam } from "@/components/TodoSeam";
 import {
   communityEntries,
   entryNumber,
+  famousByTactic,
   featuredEntry,
-  firstEntryWithTactic,
   TACTIC_LABELS,
   TACTIC_ORDER,
-  tacticCount,
 } from "@/data/entries";
 import { hoffmanQuote, motto } from "@/lib/site";
 
@@ -69,24 +68,37 @@ export default function Home() {
         </p>
       </Link>
 
-      <section className="tactics">
-        <div className="tactics__label">Browse by tactic</div>
-        <div className="tactics__list">
-          {TACTIC_ORDER.map((t) => {
-            const count = tacticCount(t);
-            const label = `${TACTIC_LABELS[t]} (${count.toLocaleString()})`;
-            const first = firstEntryWithTactic(t);
-            return count > 0 && first ? (
-              <Link key={t} href={`/${first.slug}`} className="link">
-                {label}
-              </Link>
-            ) : (
-              <span key={t} className="is-empty" title="No entries yet — be the first.">
-                {label}
-              </span>
-            );
-          })}
-        </div>
+      <section className="catalog">
+        <div className="catalog__label">The whole catalog — browse by tactic</div>
+        {TACTIC_ORDER.map((t) => {
+          const group = famousByTactic(t);
+          return (
+            <div className="catalog__group" key={t}>
+              <h2 className="catalog__group-h">
+                {TACTIC_LABELS[t]} <span className="catalog__count">({group.length})</span>
+              </h2>
+              {group.length > 0 ? (
+                <div className="catalog__grid">
+                  {group.map((e) => (
+                    <Link key={e.slug} href={`/${e.slug}`} className="catalog-card">
+                      <span className="catalog-card__no">no. {entryNumber(e.slug)}</span>
+                      <span className="catalog-card__name">{e.name}</span>
+                      <span className="catalog-card__blurb">{e.lead ?? e.story}</span>
+                      <span className="catalog-card__year">Est. {e.thenYear}</span>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <p className="catalog__empty">
+                  No one&apos;s shipped here yet.{" "}
+                  <Link href="/submit" className="link">
+                    Be the first →
+                  </Link>
+                </p>
+              )}
+            </div>
+          );
+        })}
       </section>
 
       <section className="home-foot" id="community">
