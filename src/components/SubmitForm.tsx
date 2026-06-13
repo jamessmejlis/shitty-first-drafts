@@ -19,7 +19,7 @@ export function SubmitForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const body = await res.json();
+      const body = await res.json().catch(() => ({}));
       if (res.ok) {
         form.reset();
         setStatus({ state: "sent" });
