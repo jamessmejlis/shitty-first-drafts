@@ -9,7 +9,11 @@ doc is where those batches live.
 
 Each batch below is a self-contained seeding task. They're independent and can
 run in any order (or in parallel as a fan-out workflow). Batch 0 is the baseline
-approach already described in the spec; Batches 1–3 are new structured sources.
+approach already described in the spec; Batches 1–3 are structured single-source
+mines (one show / leaderboard / site each); Batches 4–6 are theme/segment lenses
+(indie hackers, bootstrappers, physical products) that pull from several sources
+and overlap each other — keep one entry per company, pick its best home, and
+de-dup against existing entries before adding.
 
 ---
 
@@ -44,6 +48,12 @@ Read once before running any batch.
   with `sourceUrl` pointing at the transcript/episode/profile. Never paste whole
   transcripts or article bodies; the micro-story is paraphrased, the quote is a
   brief excerpt.
+- **Voice: name the founder.** Always name the founder(s) in the `lead` (and
+  `story`) — listing cards render the `lead`, so a nameless "he did X" reads
+  wrong. Where a strong verbatim quote exists, add it to the optional
+  `quote: { text, cite }` field; it renders as a brick-red pull-quote on the
+  detail page. Not every entry needs a quote — only where it's genuinely good.
+  *(Established from review feedback, 2026-06-13.)*
 - **Fact-check.** Every story is checked against the cited source before it ships
   — no embellished folklore. If a claim can't be backed, cut it.
 - **Could run as a workflow.** Each batch is a fan-out: enumerate candidates
@@ -133,9 +143,87 @@ sources that surface entries Wayback alone won't.
 
 ---
 
+## Batch 4 — Indie Hacker projects (Indie Hackers + build-in-public)
+
+- [ ] **Source.** Indie Hackers (`indiehackers.com`) — founder interviews,
+  product pages, and milestone posts — plus the broader build-in-public crowd on
+  X (Pieter Levels / levels.io, the "12 startups in 12 months" lineage,
+  #buildinpublic). The spec already flags Indie Hackers interviews and IH's own
+  ugly v1 as sources.
+- [ ] **Method.** Scan interviews and milestone threads for the moment the
+  product was a weekend hack, a spreadsheet, a Notion doc, or one ugly page.
+  These founders narrate their scrappy start publicly — the signal is dense.
+- [ ] **Extract per candidate.** Founder, product, the specific early tactic →
+  `tactic`; micro-story + a short attributed quote where one lands; `sourceUrl` =
+  the IH interview/product page or the original post.
+- [ ] **"Then" artifact.** Wayback capture of the early site (many are recent
+  enough to have a clean v1), an early screenshot the founder posted, or a
+  quote-card — see Shared conventions.
+- [ ] **Tactic fit.** Strong on `ugly-v1` and `dont-scale`; some `sold-first`.
+- [ ] **Networking note.** IH founders are reachable and like being featured —
+  tag them on launch (part of the distribution plan).
+- [ ] **Overlap.** Many IH founders are also bootstrappers (Batch 5) and may
+  appear on TrustMRR (Batch 2) or Starter Story (Batch 3); one entry per company,
+  pick its best home, de-dup before adding.
+
+---
+
+## Batch 5 — Bootstrappers (no-VC, profit-first)
+
+- [ ] **Source.** Founders who grew without venture capital: MicroConf / TinySeed
+  talks, `r/SaaS` and `r/Entrepreneur` retros, Pieter Levels, the TrustMRR
+  leaderboard (Batch 2), and "bootstrapped to $Xk MRR" write-ups. Profit-from-day-
+  one tends to force a scrappy start.
+- [ ] **Method.** Find bootstrappers whose origin was genuinely ugly or manual,
+  then confirm the story and an early artifact. Prioritise ones with a concrete,
+  cited revenue figure — the "ugly start → real money, no funding" contrast is the
+  most motivating one for this audience.
+- [ ] **Extract per candidate.** Founder, product, early tactic → `tactic`;
+  micro-story + short quote; `sourceUrl` backing both the story and (if used) the
+  revenue figure.
+- [ ] **Data dimension — revenue.** Best served by the `nowStat?` field (see the
+  Batch 2 open decision): "$45k MRR", "bootstrapped to $2M ARR". Resolve that
+  field when the first revenue-bearing batch ships, then reuse it here.
+- [ ] **"Then" artifact.** Wayback of the early site / an early posted screenshot
+  / a quote-card — see Shared conventions.
+- [ ] **Tactic fit.** Mostly `sold-first` and `ugly-v1`.
+- [ ] **Overlap.** Heavy overlap with Batches 1–4. Treat "bootstrapper" as the
+  lens, not an exclusive source; de-dup against existing entries.
+
+---
+
+## Batch 6 — Physical products (DTC / hardware / CPG)
+
+- [ ] **Source.** Physical-product founders who started scrappy: Kickstarter /
+  Indiegogo campaigns (ButcherBox came from here), Shark Tank origins, DTC brand
+  founding stories, Shopify success stories, and "made it on my kitchen table /
+  in my garage" accounts.
+- [ ] **Method.** Find products that were hand-made, pre-sold, or hawked in
+  person before any real manufacturing existed, then confirm the story and a
+  visual artifact.
+- [ ] **"Then" artifact — the crux.** Physical products rarely have a meaningful
+  early *website*. The artifact is usually a **prototype/product photo**, an
+  **archived crowdfunding page** (Wayback the Kickstarter/Indiegogo URL, as done
+  for ButcherBox), early **packaging**, or a **market-stall / kitchen photo** —
+  sourced and credited. Lean on the photo / quote-card options in Shared
+  conventions harder than in the website-native batches.
+- [ ] **Extract per candidate.** Founder, product, early tactic → `tactic`;
+  micro-story + short quote; `sourceUrl` = the campaign page / interview / profile.
+- [ ] **Tactic fit.** Strong on `sold-first` (pre-orders, crowdfunding) and
+  `dont-scale` (hand-made, hand-delivered, sold in person).
+- [ ] **Care.** Confirm photo licensing before reusing an article's image; prefer
+  the founder's own posted photo, a crowdfunding-page capture, or a designed
+  quote-card. Don't assert revenue/unit numbers without a cited source.
+
+---
+
 ## Open decisions
 
 - **`nowStat?` field** (MRR / user counts). See Batch 2. Decide when the first
-  revenue-bearing batch runs.
+  revenue-bearing batch runs — Batches 5–6 (bootstrappers, physical) want it too.
 - **Curated-indie grouping.** Whether to visually separate curated indie stories
-  from megabrands once there's a critical mass. See shared conventions.
+  from megabrands once there's a critical mass. See shared conventions — Batches
+  4–6 will push the catalog past that mass, so plan to resolve it as they land.
+- **Physical vs digital tag.** Batch 6 adds non-software products. If the mix
+  grows, consider a `medium`/category tag for filtering — YAGNI for now; the
+  tactic grouping covers browsing.
