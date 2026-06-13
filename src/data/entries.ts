@@ -510,6 +510,49 @@ export const entries: Entry[] = [
       cite: "Tony Xu, co-founder of DoorDash",
     },
   },
+  {
+    slug: "nomad-list",
+    name: "Nomad List",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/nomad-list-then.jpg",
+    thenCaption: "nomadlist.com, 2015 — the crowdsourced spreadsheet, turned into a city-ranking site.",
+    thenYear: 2015,
+    nowImage: "/screenshots/nomad-list-now.jpg",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Pieter Levels opened a public Google Spreadsheet in 2014 asking remote workers to crowdsource the best cities to live and work in. About 100 people filled it in within a day — inventing their own columns for wifi and safety — so he turned the sheet into Nomad List, a one-person business he still runs.",
+    sourceUrl: "https://levels.io/nomad-list-founder/",
+    founderName: "Pieter Levels",
+    founderLink: "https://levels.io",
+    productUrl: "https://nomadlist.com",
+    lead: "Pieter Levels' product was a public Google Spreadsheet — strangers filled it in, so he turned it into a business.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "There was no app, no backend, not even a site — just a Google Sheet Levels tweeted out, asking remote workers to add the best cities to live and work in. Around a hundred people filled it in within a day, inventing their own columns for wifi speed, cost, and safety as they went.",
+      },
+      {
+        lead: "What he shipped anyway.",
+        text: "He turned the spreadsheet into Nomad List — a city-ranking site built, in his words, fast and rough — then posted it to Product Hunt and Hacker News. It was part of his '12 startups in 12 months,' and the one that stuck.",
+      },
+      {
+        lead: "Now.",
+        text: "A profitable membership community for digital nomads (now Nomads.com) doing millions a year — still run, famously, by one person.",
+      },
+    ],
+    fileStats: [
+      { label: "Started as", value: "a public Google Sheet" },
+      { label: "Crowdsourced in", value: "~24 hours" },
+      { label: "Team size", value: "one" },
+    ],
+    tactics: ["ugly-v1", "sold-first"],
+    lesson: "Your MVP can be a spreadsheet. Ship the data, not the app — let demand tell you what to build.",
+    quote: {
+      text: "I do work fast and rough.",
+      cite: "Pieter Levels, founder of Nomad List",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
