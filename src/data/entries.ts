@@ -966,6 +966,129 @@ export const entries: Entry[] = [
       cite: "James Dyson, Fast Company (2007)",
     },
   },
+  {
+    slug: "zappos",
+    name: "Zappos",
+    kind: "famous",
+    tactic: "duct-tape-demo",
+    thenImage: "/screenshots/zappos-then.png",
+    thenCaption: "zappos.com, 1999 — the early store, just after Nick Swinmurn proved the idea by selling shoes he didn't own.",
+    thenYear: 1999,
+    story:
+      "Nick Swinmurn couldn't find shoes at the mall, so before buying any inventory he walked into local shoe stores, photographed their stock, and put the photos on a bare site. When an order came in he drove back, bought the pair at retail, and shipped it himself — a deliberate fake to test whether people would buy shoes online. They would. It became Zappos; Amazon bought it for ~$1.2B.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Nick_Swinmurn",
+    founderName: "Nick Swinmurn",
+    productUrl: "https://www.zappos.com",
+    lead: "Nick Swinmurn sold shoes he didn't own — photographing them in local stores, and buying each pair at retail only after someone ordered.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "Frustrated he couldn't find the shoes he wanted at the mall, Nick Swinmurn built the cheapest possible test in 1999. He walked into local shoe stores, asked to photograph their inventory, and posted the pictures on a bare site called ShoeSite.com. There was no warehouse and no stock.",
+      },
+      {
+        lead: "What he faked.",
+        text: "When an order came in, he drove back to the store, bought the shoes at full retail, and mailed them himself — often losing money. The point was never profit; it was to learn whether anyone would buy shoes online at all, before committing a cent to inventory. They would.",
+      },
+      {
+        lead: "Now.",
+        text: "Renamed Zappos, it grew into a billion-dollar shoe retailer famous for service, and Amazon acquired it for about $1.2 billion in 2009 — from a guy faking a shoe store one photo at a time.",
+      },
+    ],
+    fileStats: [
+      { label: "Founded", value: "1999, as ShoeSite.com" },
+      { label: "Day-one inventory", value: "none — bought per order" },
+      { label: "Acquired by", value: "Amazon, ~$1.2B" },
+    ],
+    tactics: ["duct-tape-demo", "sold-first"],
+    lesson:
+      "Fake the back end before you build it. A photo of someone else's shoes was enough to prove people would buy.",
+  },
+  {
+    slug: "macrofactor",
+    name: "MacroFactor",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/macrofactor-then.png",
+    thenCaption: "strongerbyscience.com's $10 Training Toolkit — home of the spreadsheet that became MacroFactor.",
+    thenYear: 2015,
+    nowImage: "/screenshots/macrofactor-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Before MacroFactor was a slick app, it was a buggy spreadsheet. In 2015 Greg Nuckols released a 'Self-Correcting Macro Plan' as a freebie in a $10 bundle — one he says 'worked about 75% of the time.' Years later a developer messaged him about the neglected sheet, they rebuilt its algorithm as an app, and MacroFactor launched in 2021.",
+    sourceUrl:
+      "https://web.archive.org/web/20221210085510/https://macrofactorapp.com/the-history-and-team-behind-macrofactor/",
+    founderName: "Greg Nuckols",
+    founderLink: "https://www.strongerbyscience.com",
+    productUrl: "https://macrofactor.com",
+    lead: "Before MacroFactor was a slick app, it was Greg Nuckols' buggy spreadsheet — one he admits 'worked about 75% of the time.'",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "In March 2015 Greg Nuckols released a 'Self-Correcting Macro Plan' — a single spreadsheet — as a freebie inside a $10 bundle called the Training Toolkit. By his own account it 'demonstrated the limits of my MS Excel skills': a known bug meant a few pounds of water-weight loss could swing your calorie target by 1,500 a day.",
+      },
+      {
+        lead: "What he shipped anyway.",
+        text: "It was rough, but the core idea — a plan that adjusted your macros based on your actual results — worked well enough that people used it for years. Then a developer messaged Nuckols out of the blue about the 'old, tattered, neglected spreadsheet,' and they rebuilt its algorithm into a real app.",
+      },
+      {
+        lead: "Now.",
+        text: "MacroFactor launched in 2021 and became one of the most respected nutrition apps on the market — its core logic still descended directly from that one buggy spreadsheet.",
+      },
+    ],
+    fileStats: [
+      { label: "Started as", value: "a spreadsheet (2015)" },
+      { label: "Worked", value: "~75% of the time" },
+      { label: "Now", value: "a top nutrition app" },
+    ],
+    lesson:
+      "A spreadsheet that works 75% of the time is still a product. Ship the ugly version — the algorithm is what matters.",
+    quote: {
+      text: "The story of MacroFactor, like all great stories, starts with a spreadsheet.",
+      cite: "Greg Nuckols, co-founder of MacroFactor",
+    },
+  },
+  {
+    slug: "waze",
+    name: "Waze",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/waze-then.png",
+    thenCaption: "waze.com, 2012 — 'community-based' navigation: the map was built entirely by users driving with the app on.",
+    thenYear: 2012,
+    story:
+      "Waze's first product had almost no map. Founded in 2008 by Uri Levine with Ehud Shabtai and Amir Shinar — out of Shabtai's FreeMap Israel project — it built its maps by crowdsourcing: when you drove with the app on, your GPS trace paved the roads. The users were the mapping team. Google bought it in 2013 for about $1.1 billion.",
+    sourceUrl: "https://www.nfx.com/post/the-insider-story-of-waze",
+    founderName: "Uri Levine",
+    founderLink: "https://urilevine.com",
+    productUrl: "https://www.waze.com",
+    lead: "Uri Levine and his co-founders launched Waze with a near-empty map — and let the users pave the roads themselves, one drive at a time.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "Waze grew out of Ehud Shabtai's FreeMap Israel project, and when Uri Levine, Shabtai, and Amir Shinar founded the company in 2008, the first product shipped with almost no base map. Open it somewhere new and you got a blank canvas.",
+      },
+      {
+        lead: "What they did that didn't scale.",
+        text: "There was no fleet of survey cars. The map was crowdsourced: as you drove with the app running, your GPS trace literally drew the roads, and users fixed names, junctions, and hazards by hand. The users were the mapping team — 'the more you drive, the better it gets.'",
+      },
+      {
+        lead: "Now.",
+        text: "Waze became one of the most-used navigation apps in the world, and Google acquired it in 2013 for about $1.1 billion — a map built, mile by mile, by the people using it.",
+      },
+    ],
+    fileStats: [
+      { label: "Founded", value: "2008, from FreeMap Israel" },
+      { label: "The map", value: "drawn by users driving" },
+      { label: "Acquired by", value: "Google, ~$1.1B (2013)" },
+    ],
+    tactics: ["dont-scale", "ugly-v1"],
+    lesson:
+      "If you can't build it, let your users build it. Waze's map was its users — the unscalable thing was the whole product.",
+    quote: {
+      text: "Fall in love with the problem, not the solution.",
+      cite: "Uri Levine, Fall in Love with the Problem, Not the Solution",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
