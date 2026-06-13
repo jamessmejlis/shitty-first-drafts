@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { existsSync } from "node:fs";
+import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { entries, TACTIC_LABELS } from "@/data/entries";
 
@@ -68,6 +68,15 @@ describe("content integrity", () => {
   test("famous entries cite a source", () => {
     for (const e of entries.filter((x) => x.kind === "famous")) {
       expect(e.sourceUrl?.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("images are under the 500KB weight ceiling", () => {
+    for (const e of entries) {
+      const images = [e.thenImage, e.nowImage].filter(Boolean) as string[];
+      for (const p of images) {
+        expect(statSync(img(p)).size).toBeLessThan(500_000);
+      }
     }
   });
 });
