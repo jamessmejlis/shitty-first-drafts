@@ -1,11 +1,12 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { extname, join } from "node:path";
 import { ImageResponse } from "next/og";
 import { entries, getEntry } from "@/data/entries";
 import { siteName } from "@/lib/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return entries.map((e) => ({ slug: e.slug }));
@@ -13,9 +14,16 @@ export function generateStaticParams() {
 
 export const alt = "It started ugly";
 
+const MIME: Record<string, string> = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".webp": "image/webp",
+};
+
 async function dataUri(publicPath: string) {
   const buf = await readFile(join(process.cwd(), "public", publicPath));
-  return `data:image/png;base64,${buf.toString("base64")}`;
+  const mime = MIME[extname(publicPath)] ?? "image/png";
+  return `data:${mime};base64,${buf.toString("base64")}`;
 }
 
 export default async function OgImage({
