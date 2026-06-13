@@ -47,4 +47,27 @@ describe("content integrity", () => {
       expect(e.productUrl?.length).toBeGreaterThan(0);
     }
   });
+
+  test("image paths follow the /screenshots/ convention", () => {
+    const pattern = /^\/screenshots\/[a-z0-9-]+\.(png|jpg|webp)$/;
+    for (const e of entries) {
+      expect(e.thenImage).toMatch(pattern);
+      if (e.nowImage) expect(e.nowImage).toMatch(pattern);
+    }
+  });
+
+  test("links are http(s) URLs", () => {
+    const httpish = /^https?:\/\//;
+    for (const e of entries) {
+      if (e.sourceUrl) expect(e.sourceUrl).toMatch(httpish);
+      if (e.founderLink) expect(e.founderLink).toMatch(httpish);
+      if (e.productUrl) expect(e.productUrl).toMatch(httpish);
+    }
+  });
+
+  test("famous entries cite a source", () => {
+    for (const e of entries.filter((x) => x.kind === "famous")) {
+      expect(e.sourceUrl?.length).toBeGreaterThan(0);
+    }
+  });
 });
