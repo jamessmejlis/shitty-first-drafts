@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NewsletterEmbed } from "@/components/NewsletterEmbed";
 import { ShareLinks } from "@/components/ShareLinks";
 import { entries, getEntry, TACTIC_LABELS } from "@/data/entries";
 import { siteUrl } from "@/lib/site";
@@ -107,6 +108,7 @@ export default async function EntryPage({
       <p>
         <Link href="/submit">Your turn — submit your ugly MVP →</Link>
       </p>
+      <NewsletterEmbed />
     </main>
   );
 }

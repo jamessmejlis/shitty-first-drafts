@@ -1,3 +1,4 @@
+import { siteName } from "@/lib/site";
 import { validateSubmission } from "@/lib/submission";
 
 // Best-effort in-memory rate limit (resets per serverless instance — the
@@ -64,7 +65,7 @@ export async function POST(req: Request) {
         // onboarding@resend.dev works before a domain is verified (delivers only
         // to the account owner's email — exactly our use case). Swap to a
         // verified-domain sender post-launch.
-        from: "Started Ugly <onboarding@resend.dev>",
+        from: `${siteName} <onboarding@resend.dev>`,
         to: [toEmail],
         reply_to: s.email,
         subject: `Ugly MVP submission: ${s.productName}`,

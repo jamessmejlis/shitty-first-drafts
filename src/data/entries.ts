@@ -84,7 +84,7 @@ export const entries: Entry[] = [
     kind: "famous",
     tactic: "duct-tape-demo",
     thenImage: "/screenshots/dropbox-then.png",
-    thenCaption: "The product barely existed — the MVP was a narrated demo video.",
+    thenCaption: "Before this site existed, the MVP was a narrated demo video.",
     thenYear: 2009,
     nowImage: "/screenshots/dropbox-now.png",
     nowYear: new Date().getFullYear(),
