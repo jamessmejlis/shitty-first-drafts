@@ -57,12 +57,12 @@ export const entries: Entry[] = [
     kind: "famous",
     tactic: "ugly-v1",
     thenImage: "/screenshots/amazon-then.png",
-    thenYear: 1998,
+    thenYear: 1999,
     nowImage: "/screenshots/amazon-now.png",
     nowYear: new Date().getFullYear(),
     story:
       "Launched in 1995 selling only books, run out of Jeff Bezos's garage. A bell rang for every order — within weeks it rang so often they switched it off.",
-    sourceUrl: "https://web.archive.org/web/19981212012532/http://amazon.com/",
+    sourceUrl: "https://web.archive.org/web/19990828014913/http://www.amazon.com/",
   },
   {
     slug: "airbnb",
