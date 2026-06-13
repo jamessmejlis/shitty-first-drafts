@@ -142,7 +142,7 @@ export const entries: Entry[] = [
     name: "Airbnb",
     kind: "famous",
     tactic: "dont-scale",
-    thenImage: "/screenshots/airbnb-then.png",
+    thenImage: "/screenshots/airbnb-then.jpg",
     thenCaption: "AirBed & Breakfast, before the name fit on a cereal box.",
     thenYear: 2008,
     nowImage: "/screenshots/airbnb-now.png",
@@ -422,6 +422,50 @@ export const entries: Entry[] = [
     quote: {
       text: "They were atrocious. They were so bad.",
       cite: "Wesley Tian, The Product Market Fit Show",
+    },
+  },
+  {
+    slug: "strava",
+    name: "Strava",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/strava-then.jpg",
+    thenCaption: "Strava's 2009 ride dashboard — a Google map, elevation, power/HR stats, and the climb-segment leaderboard.",
+    thenYear: 2009,
+    nowImage: "/screenshots/strava-now.jpg",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Mark Gainey and Michael Horvath launched Strava in 2009 for one narrow tribe: road cyclists who'd already spent $300 on a Garmin. The first product was a plain site that ranked their ride data on segment leaderboards — and they recruited about 20 friends to use it.",
+    sourceUrl:
+      "https://joinalphabytes.substack.com/p/lessons-on-how-strava-scaled-to-100m",
+    founderName: "Mark Gainey & Michael Horvath",
+    productUrl: "https://www.strava.com",
+    lead: "Mark Gainey and Michael Horvath went inch-wide, mile-deep — building Strava for Garmin-owning cyclists, one friend at a time.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "The first Strava was a plain site that let cyclists upload their Garmin data and see it ranked on a handful of segment leaderboards. No app, no running, no broad 'fitness' ambitions — just road cyclists, the one tribe who already owned the $300 devices and cared who was fastest up a climb.",
+      },
+      {
+        lead: "What they did that didn't scale.",
+        text: "They hand-recruited about 20 friends — half East Coast, half West Coast — for a 30-day competitive trial during the Tour de France, dangling prizes like socks and racing wheels for the fastest segments. King-of-the-Mountain bragging rights did the rest; riders kept coming back to defend their times.",
+      },
+      {
+        lead: "Now.",
+        text: "A fitness network with more than 100 million athletes — still built on the same segment leaderboards that hooked the first twenty.",
+      },
+    ],
+    fileStats: [
+      { label: "Founded", value: "2009" },
+      { label: "Day-one tribe", value: "cyclists with Garmins" },
+      { label: "First cohort", value: "~20 friends" },
+    ],
+    tactics: ["dont-scale", "ugly-v1"],
+    lesson:
+      "Go inch-wide and mile-deep. Win one obsessive tribe by hand before you try to win everyone.",
+    quote: {
+      text: "Do things that don't scale. People want to focus on scale and network effects early on. We were focused on one thing: if we had one person uploading to Strava, could we get them to come back and do it again?",
+      cite: "Mark Gainey, co-founder of Strava",
     },
   },
 ];

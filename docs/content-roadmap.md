@@ -43,6 +43,20 @@ Read once before running any batch.
   sourced early screenshot/photo/video frame from the article, or a designed
   quote-card artifact carrying the founder's own words. Use `thenCaption` to
   explain non-obvious artifacts.
+- **Verify Wayback renders — beware "archive-rot."** A capture can archive the HTML
+  but not the page's CSS/JS (the assets 404), so it renders as collapsed, unstyled
+  HTML — which misrepresents how the site actually looked. That is *not* authentic
+  ugliness; don't ship it. Before trusting a capture, **look at it**. If it's
+  unstyled/broken, fetch the raw archived HTML (put `id_` after the timestamp, e.g.
+  `…/20081219124926id_/http://…`), check for `<link rel=stylesheet>` refs, then CDX
+  whether those `.css` files are archived as `200` (vs `404`/`301`). Fixes, in order:
+  (1) **try other dates** — CDX the stylesheet to find a timestamp where it's `200`,
+  then capture a page snapshot near that date (Airbnb's Aug-2008 capture renders; its
+  Dec-2008 one is rot); (2) **images survive when CSS doesn't** — grab an archived
+  product screenshot directly (Strava's `/images/tour/tour1.jpg` is the real 2009
+  dashboard); (3) fall back to a sourced screenshot or a quote-card. **But don't
+  "fix" genuine minimalism** — Google '98 and craigslist really were that bare;
+  that's authentic, not rot.
 - **Quotes & copyright.** Real guest/founder quotes are powerful — use them, but
   keep them short, in quotation marks, attributed to the person + episode/article,
   with `sourceUrl` pointing at the transcript/episode/profile. Never paste whole
