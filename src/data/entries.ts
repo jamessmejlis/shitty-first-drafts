@@ -885,6 +885,46 @@ export const entries: Entry[] = [
       cite: "Andrew Kamphey, founder of Better Sheets",
     },
   },
+  {
+    slug: "starter-story",
+    name: "Starter Story",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/starterstory-then.png",
+    thenCaption: "starterstory.com, 2018 — a library of founder interviews Pat Walls wrote up one at a time.",
+    thenYear: 2018,
+    story:
+      "After his own startup failed to get into Y Combinator, Pat Walls started Starter Story by cold-emailing founders a questionnaire and hand-writing each one into a case study — published nights and weekends from a Starbucks while employed full-time. Most early posts got under 100 views. The library compounded into 1M+ monthly visits, and HubSpot acquired it.",
+    sourceUrl: "https://simonowens.substack.com/p/how-starter-story-grew-from-a-side",
+    founderName: "Pat Walls",
+    productUrl: "https://www.starterstory.com",
+    lead: "Pat Walls hand-wrote Starter Story one founder interview at a time, from a Starbucks after work — most posts got under 100 views.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "After his own startup failed to get into Y Combinator, Pat Walls started cold-emailing and calling founders a questionnaire about how their businesses actually worked, then writing each one up by hand into a case study. He published nights and weekends from a Starbucks while holding down a full-time job.",
+      },
+      {
+        lead: "What he did that didn't scale.",
+        text: "Two or three interviews a week, one at a time, on a slow bet — that a big enough library of real founder stories would eventually rank on Google. For the first year, most posts got fewer than 100 views.",
+      },
+      {
+        lead: "Now.",
+        text: "The library compounded past a million visits a month, and HubSpot acquired Starter Story. The whole thing started as one guy hand-writing interviews after work.",
+      },
+    ],
+    fileStats: [
+      { label: "Started as", value: "hand-written interviews" },
+      { label: "Year-one traffic", value: "<100 views/post" },
+      { label: "Exit", value: "acquired by HubSpot" },
+    ],
+    lesson:
+      "Do the slow, unscalable thing long enough and it compounds. A hand-built library beat anything he could have automated on day one.",
+    quote: {
+      text: "I had failed with a previous startup, so I just thought, okay, maybe I can just start interviewing founders so I'll find my next idea, or I'll find a co-founder.",
+      cite: "Pat Walls, founder of Starter Story",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
