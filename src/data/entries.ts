@@ -38,6 +38,60 @@ export const entries: Entry[] = [
       "Craig Newmark started it in 1995 as a cc'd email list of San Francisco events. The website came later — and has barely changed since.",
     sourceUrl: "https://web.archive.org/web/19981202212015/http://www.craigslist.org/",
   },
+  {
+    slug: "google",
+    name: "Google",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/google-then.png",
+    thenYear: 1998,
+    nowImage: "/screenshots/google-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Began as a Stanford research project called BackRub. The famously bare 1998 homepage stayed bare partly because the founders didn't do fancy HTML.",
+    sourceUrl: "https://web.archive.org/web/19981202230410/http://www.google.com/",
+  },
+  {
+    slug: "amazon",
+    name: "Amazon",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/amazon-then.png",
+    thenYear: 1998,
+    nowImage: "/screenshots/amazon-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Launched in 1995 selling only books, run out of Jeff Bezos's garage. A bell rang for every order — within weeks it rang so often they switched it off.",
+    sourceUrl: "https://web.archive.org/web/19981212012532/http://amazon.com/",
+  },
+  {
+    slug: "airbnb",
+    name: "Airbnb",
+    kind: "famous",
+    tactic: "dont-scale",
+    thenImage: "/screenshots/airbnb-then.png",
+    thenCaption: "AirBed & Breakfast, before the name fit on a cereal box.",
+    thenYear: 2008,
+    nowImage: "/screenshots/airbnb-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "When listings looked bad, the founders flew to New York and photographed hosts' apartments themselves — and funded the company selling $40 election-themed cereal boxes.",
+    sourceUrl: "https://web.archive.org/web/20081219124926/http://airbedandbreakfast.com/",
+  },
+  {
+    slug: "dropbox",
+    name: "Dropbox",
+    kind: "famous",
+    tactic: "duct-tape-demo",
+    thenImage: "/screenshots/dropbox-then.png",
+    thenCaption: "The product barely existed — the MVP was a narrated demo video.",
+    thenYear: 2009,
+    nowImage: "/screenshots/dropbox-now.png",
+    nowYear: new Date().getFullYear(),
+    story:
+      "Before the product worked at scale, Drew Houston shipped a 3-minute screencast demo tuned for Digg readers. The waiting list jumped from 5,000 to 75,000 overnight.",
+    sourceUrl: "https://web.archive.org/web/20090101231252/http://getdropbox.com/",
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");
