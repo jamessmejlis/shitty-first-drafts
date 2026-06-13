@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Entry, TACTIC_LABELS } from "@/data/entries";
 
-export function EntryCard({ entry }: { entry: Entry }) {
+export function EntryCard({ entry, priority = false }: { entry: Entry; priority?: boolean }) {
   return (
     <article className="entry-card">
       <h3>
-        <Link href={`/${entry.slug}`}>{entry.name}</Link>{" "}
-        <span className="badge">{TACTIC_LABELS[entry.tactic]}</span>
+        <Link href={`/${entry.slug}`}>{entry.name}</Link>
       </h3>
+      <span className="badge">{TACTIC_LABELS[entry.tactic]}</span>
       <div className="pair">
         <div>
           <Image
@@ -16,6 +16,8 @@ export function EntryCard({ entry }: { entry: Entry }) {
             alt={`${entry.name} in ${entry.thenYear}${entry.thenCaption ? ` — ${entry.thenCaption}` : ""}`}
             width={1280}
             height={960}
+            priority={priority}
+            sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           <p>
             <strong>{entry.thenYear}</strong>
@@ -30,6 +32,7 @@ export function EntryCard({ entry }: { entry: Entry }) {
                 alt={`${entry.name} in ${entry.nowYear}`}
                 width={1280}
                 height={960}
+                sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <p>
                 <strong>{entry.nowYear}</strong>
@@ -45,11 +48,11 @@ export function EntryCard({ entry }: { entry: Entry }) {
       <p>{entry.story}</p>
       {entry.kind === "community" && entry.founderName && (
         <p>
-          Shipped by <a href={entry.founderLink}>{entry.founderName}</a>
+          Shipped by <a href={entry.founderLink} rel="noopener noreferrer">{entry.founderName}</a>
           {entry.productUrl && (
             <>
               {" — "}
-              <a href={entry.productUrl}>see it live</a>
+              <a href={entry.productUrl} rel="noopener noreferrer">see it live</a>
             </>
           )}
         </p>

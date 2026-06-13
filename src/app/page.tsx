@@ -23,8 +23,8 @@ export default function Home() {
       <section>
         <h2>They all started ugly</h2>
         <div className="entry-grid">
-          {famousEntries.map((e) => (
-            <EntryCard key={e.slug} entry={e} />
+          {famousEntries.map((e, i) => (
+            <EntryCard key={e.slug} entry={e} priority={i === 0} />
           ))}
         </div>
       </section>
