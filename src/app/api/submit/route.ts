@@ -51,35 +51,46 @@ export async function POST(req: Request) {
     );
   }
 
-  const resendRes = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      // onboarding@resend.dev works before a domain is verified (delivers only
-      // to the account owner's email — exactly our use case). Swap to a
-      // verified-domain sender post-launch.
-      from: "Started Ugly <onboarding@resend.dev>",
-      to: [toEmail],
-      reply_to: s.email,
-      subject: `Ugly MVP submission: ${s.productName}`,
-      text: [
-        `Product: ${s.productName}`,
-        `URL: ${s.productUrl}`,
-        `Founder: ${s.founderName} (${s.email})`,
-        `Founder link: ${s.founderLink}`,
-        ``,
-        `Story:`,
-        s.story,
-        ``,
-        `Reply to this email to ask for their screenshot.`,
-      ].join("\n"),
-    }),
-  });
+  let resendRes: Response;
+  try {
+    resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      signal: AbortSignal.timeout(8000),
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // onboarding@resend.dev works before a domain is verified (delivers only
+        // to the account owner's email — exactly our use case). Swap to a
+        // verified-domain sender post-launch.
+        from: "Started Ugly <onboarding@resend.dev>",
+        to: [toEmail],
+        reply_to: s.email,
+        subject: `Ugly MVP submission: ${s.productName}`,
+        text: [
+          `Product: ${s.productName}`,
+          `URL: ${s.productUrl}`,
+          `Founder: ${s.founderName} (${s.email})`,
+          `Founder link: ${s.founderLink}`,
+          ``,
+          `Story:`,
+          s.story,
+          ``,
+          `Reply to this email to ask for their screenshot.`,
+        ].join("\n"),
+      }),
+    });
+  } catch (err) {
+    console.error("Resend request failed", err);
+    return Response.json(
+      { error: "Could not send your submission.", fallback: true },
+      { status: 502 }
+    );
+  }
 
   if (!resendRes.ok) {
+    console.error("Resend send failed", resendRes.status, await resendRes.text().catch(() => ""));
     return Response.json(
       { error: "Could not send your submission.", fallback: true },
       { status: 502 }

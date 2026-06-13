@@ -94,6 +94,18 @@ describe("POST /api/submit", () => {
     expect(calls.length).toBe(0);
   });
 
+  test("network failure returns 502 with fallback flag", async () => {
+    process.env.RESEND_API_KEY = "test-key";
+    process.env.SUBMIT_TO_EMAIL = "james@example.com";
+    globalThis.fetch = (async () => {
+      throw new Error("network down");
+    }) as typeof fetch;
+    const res = await POST(req(valid, "8.8.8.8"));
+    expect(res.status).toBe(502);
+    const body = await res.json();
+    expect(body.fallback).toBe(true);
+  });
+
   test("rate limit: 4th request in a minute from same IP returns 429", async () => {
     process.env.RESEND_API_KEY = "test-key";
     process.env.SUBMIT_TO_EMAIL = "james@example.com";
