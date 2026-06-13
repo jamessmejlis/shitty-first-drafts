@@ -925,6 +925,47 @@ export const entries: Entry[] = [
       cite: "Pat Walls, founder of Starter Story",
     },
   },
+  {
+    slug: "dyson",
+    name: "Dyson",
+    kind: "famous",
+    tactic: "ugly-v1",
+    thenImage: "/screenshots/dyson-then.png",
+    thenCaption: "The number is the story — 5,126 failed cyclone prototypes before the one that worked.",
+    thenYear: 1983,
+    story:
+      "James Dyson built his first bagless vacuum from a cardboard-and-tape cyclone strapped over a Hoover, then rebuilt it 5,127 times across about five years — 5,126 of them failures — before the one that worked. No manufacturer would license the design, so he built it himself; the DC01 later became the UK's best-selling vacuum.",
+    sourceUrl: "https://www.fastcompany.com/59549/failure-doesnt-suck",
+    founderName: "James Dyson",
+    founderLink: "https://www.dyson.com/james-dyson",
+    productUrl: "https://www.dyson.com",
+    lead: "James Dyson built 5,127 prototypes of his vacuum — the first from cardboard and tape — and 5,126 of them failed.",
+    body: [
+      {
+        lead: "The ugly part.",
+        text: "Frustrated by a vacuum that clogged, James Dyson made a rudimentary cyclone out of cardboard and tape and strapped it over his Hoover in place of the bag. Then he iterated — by hand, one prototype at a time, for about five years.",
+      },
+      {
+        lead: "What he shipped anyway.",
+        text: "It took 5,127 prototypes before the cyclone worked the way he wanted, and 5,126 of them failed. No established manufacturer would license a bagless vacuum — it threatened their lucrative bag sales — so Dyson eventually built and sold it himself.",
+      },
+      {
+        lead: "Now.",
+        text: "The DC01 became the UK's best-selling vacuum, and Dyson grew into a global engineering company — built on 5,126 failures and one that finally worked.",
+      },
+    ],
+    fileStats: [
+      { label: "Prototypes", value: "5,127" },
+      { label: "Failures", value: "5,126" },
+      { label: "Built from", value: "cardboard + tape" },
+    ],
+    lesson:
+      "The famous number is the failures, not the success. 5,126 ugly prototypes were the price of the one that worked.",
+    quote: {
+      text: "I made 5,127 prototypes of my vacuum before I got it right. There were 5,126 failures. But I learned from each one.",
+      cite: "James Dyson, Fast Company (2007)",
+    },
+  },
 ];
 
 export const famousEntries = entries.filter((e) => e.kind === "famous");

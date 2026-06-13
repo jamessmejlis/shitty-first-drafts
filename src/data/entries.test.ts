@@ -27,7 +27,8 @@ describe("content integrity", () => {
 
   test("years are sane", () => {
     for (const e of entries) {
-      expect(e.thenYear).toBeGreaterThanOrEqual(1990);
+      // Floor is pre-web to admit Batch 6 physical products (e.g. Dyson, 1983).
+      expect(e.thenYear).toBeGreaterThanOrEqual(1970);
       expect(e.thenYear).toBeLessThanOrEqual(new Date().getFullYear());
       if (e.nowYear) expect(e.nowYear).toBeGreaterThanOrEqual(e.thenYear);
     }
