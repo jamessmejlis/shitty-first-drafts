@@ -63,7 +63,7 @@ export default async function EntryPage({
 
         <div className="ba-frame">
           <BeforeAfter
-            height={360}
+            height={470}
             priority
             beforeSrc={entry.thenImage}
             afterSrc={entry.nowImage ?? entry.thenImage}

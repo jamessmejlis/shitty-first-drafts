@@ -10,7 +10,7 @@ type Props = {
   afterAlt: string;
   beforeBadge?: string;
   afterBadge?: string;
-  /** Frame height in px — 370 on home, 360 on entry. */
+  /** Frame height in px — 480 on home, 470 on entry (capped shorter on mobile via CSS). */
   height: number;
   priority?: boolean;
 };

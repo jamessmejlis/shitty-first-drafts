@@ -432,27 +432,32 @@ export const entries: Entry[] = [
     thenImage: "/screenshots/strava-then.jpg",
     thenCaption: "Strava's 2009 ride dashboard — a Google map, elevation, power/HR stats, and the climb-segment leaderboard.",
     thenYear: 2009,
-    nowImage: "/screenshots/strava-now.jpg",
+    nowImage: "/screenshots/strava-now-app-v2.jpg",
     nowYear: new Date().getFullYear(),
     story:
-      "Mark Gainey and Michael Horvath launched Strava in 2009 for one narrow tribe: road cyclists who'd already spent $300 on a Garmin. The first product was a plain site that ranked their ride data on segment leaderboards — and they recruited about 20 friends to use it.",
+      "Mark Gainey and Michael Horvath first sketched a 'virtual locker room' for athletes back in their Harvard rowing days — then shelved it for more than a decade, until phones and GPS finally caught up. When they launched Strava in 2009 it was aimed at one narrow tribe: road cyclists who'd already spent $300 on a Garmin. The first product was a plain website that ranked their ride data on segment leaderboards — and they recruited about 20 friends to use it.",
     sourceUrl:
       "https://joinalphabytes.substack.com/p/lessons-on-how-strava-scaled-to-100m",
     founderName: "Mark Gainey & Michael Horvath",
     productUrl: "https://www.strava.com",
     lead: "Mark Gainey and Michael Horvath went inch-wide, mile-deep — building Strava for Garmin-owning cyclists, one friend at a time.",
+    featuredCard: {
+      before:
+        "a plain website where ~20 cycling friends uploaded Garmin data to see who was fastest up a climb. No app, no running.",
+      now: "100M+ athletes recording runs and rides from their phones — still chasing the same segment leaderboards.",
+    },
     body: [
       {
         lead: "The ugly part.",
-        text: "The first Strava was a plain site that let cyclists upload their Garmin data and see it ranked on a handful of segment leaderboards. No app, no running, no broad 'fitness' ambitions — just road cyclists, the one tribe who already owned the $300 devices and cared who was fastest up a climb.",
+        text: "The idea wasn't new: Gainey and Horvath had sketched a 'virtual locker room' for athletes back in their Harvard rowing days, then shelved it for more than a decade until phones and GPS finally caught up. When they shipped in 2009, the first Strava was a plain website where cyclists uploaded Garmin data and saw it ranked on a handful of segment leaderboards — no app, no running, just road cyclists, the one tribe who already owned the $300 devices and cared who was fastest up a climb.",
       },
       {
         lead: "What they did that didn't scale.",
-        text: "They hand-recruited about 20 friends — half East Coast, half West Coast — for a 30-day competitive trial during the Tour de France, dangling prizes like socks and racing wheels for the fastest segments. King-of-the-Mountain bragging rights did the rest; riders kept coming back to defend their times.",
+        text: "They hand-recruited about 20 friends — half East Coast, half West Coast — for a 30-day competitive trial during the Tour de France, dangling prizes like socks and racing wheels for the fastest segments. Early on the founders even drove to local bike races to plug riders' Garmins in and upload the data by hand. King-of-the-Mountain bragging rights did the rest; riders kept coming back to defend their times.",
       },
       {
         lead: "Now.",
-        text: "A fitness network with more than 100 million athletes — still built on the same segment leaderboards that hooked the first twenty.",
+        text: "The mobile app didn't even arrive until 2011 — and that's what turned a cyclists' website into a fitness network of more than 100 million runners, riders, and hikers. It's still built on the same segment leaderboards that hooked the first twenty.",
       },
     ],
     fileStats: [
@@ -1055,6 +1060,8 @@ export const entries: Entry[] = [
     thenImage: "/screenshots/waze-then.png",
     thenCaption: "waze.com, 2012 — 'community-based' navigation: the map was built entirely by users driving with the app on.",
     thenYear: 2012,
+    nowImage: "/screenshots/waze-now.png",
+    nowYear: new Date().getFullYear(),
     story:
       "Waze's first product had almost no map. Founded in 2008 by Uri Levine with Ehud Shabtai and Amir Shinar — out of Shabtai's FreeMap Israel project — it built its maps by crowdsourcing: when you drove with the app on, your GPS trace paved the roads. The users were the mapping team. Google bought it in 2013 for about $1.1 billion.",
     sourceUrl: "https://www.nfx.com/post/the-insider-story-of-waze",
@@ -1096,7 +1103,7 @@ export const communityEntries = entries.filter((e) => e.kind === "community");
 export const getEntry = (slug: string) => entries.find((e) => e.slug === slug);
 
 // The entry the home page leads with (hero before/after + featured card).
-export const FEATURED_SLUG = "airbnb";
+export const FEATURED_SLUG = "strava";
 export const featuredEntry = getEntry(FEATURED_SLUG) ?? famousEntries[0] ?? entries[0];
 
 // 1-based catalog position, used for the honest "no. N" labels.

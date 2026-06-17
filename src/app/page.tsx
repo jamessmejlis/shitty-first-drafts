@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { TodoSeam } from "@/components/TodoSeam";
 import {
   communityEntries,
-  entryNumber,
   famousByTactic,
   featuredEntry,
   TACTIC_LABELS,
@@ -31,7 +30,7 @@ export default function Home() {
 
       <div className="ba-frame">
         <BeforeAfter
-          height={370}
+          height={480}
           priority
           beforeSrc={f.thenImage}
           afterSrc={f.nowImage ?? f.thenImage}
@@ -49,9 +48,7 @@ export default function Home() {
       </p>
 
       <Link href={`/${f.slug}`} className="featured">
-        <div className="kicker featured__kicker">
-          Featured ugly start — no. {entryNumber(f.slug)}
-        </div>
+        <div className="kicker featured__kicker">Featured ugly start</div>
         <div className="featured__title-row">
           <span className="featured__name">{f.name}</span>
           <span className="featured__year">{f.thenYear}</span>
@@ -81,7 +78,6 @@ export default function Home() {
                 <div className="catalog__grid">
                   {group.map((e) => (
                     <Link key={e.slug} href={`/${e.slug}`} className="catalog-card">
-                      <span className="catalog-card__no">no. {entryNumber(e.slug)}</span>
                       <span className="catalog-card__name">{e.name}</span>
                       <span className="catalog-card__blurb">{e.lead ?? e.story}</span>
                       <span className="catalog-card__year">Est. {e.thenYear}</span>
