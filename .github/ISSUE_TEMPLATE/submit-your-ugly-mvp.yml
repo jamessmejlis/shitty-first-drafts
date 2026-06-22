@@ -46,3 +46,9 @@ body:
       label: Screenshot of the ugly version
       description: Drag and drop your ugly v1 screenshot here — this is where it's stored.
     validations: { required: true }
+  - type: textarea
+    id: screenshot_now
+    attributes:
+      label: Screenshot of it now (optional)
+      description: Got an after/now shot? Drop it here for a before → after slider. Optional.
+    validations: { required: false }

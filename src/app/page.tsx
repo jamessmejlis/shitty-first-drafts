@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { StaticShot } from "@/components/StaticShot";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -29,19 +30,37 @@ export default function Home() {
       </section>
 
       <div className="ba-frame">
-        <BeforeAfter
-          height={480}
-          priority
-          beforeSrc={f.thenImage}
-          afterSrc={f.nowImage ?? f.thenImage}
-          beforeAlt={`${f.name} in ${f.thenYear}`}
-          afterAlt={`${f.name} in ${f.nowYear ?? "now"}`}
-          beforeBadge={`${era} · ${f.thenYear}`}
-          afterBadge={`${era} · ${f.nowYear ?? "now"}`}
-        />
+        {f.nowImage ? (
+          <BeforeAfter
+            height={480}
+            priority
+            beforeSrc={f.thenImage}
+            afterSrc={f.nowImage}
+            beforeAlt={`${f.name} in ${f.thenYear}`}
+            afterAlt={`${f.name} in ${f.nowYear ?? "now"}`}
+            beforeBadge={`${era} · ${f.thenYear}`}
+            afterBadge={`${era} · ${f.nowYear ?? "now"}`}
+          />
+        ) : (
+          <StaticShot
+            height={480}
+            priority
+            src={f.thenImage}
+            alt={`${f.name} in ${f.thenYear}`}
+            badge={`${era} · ${f.thenYear}`}
+          />
+        )}
       </div>
       <p className="caption">
-        Drag the handle — {f.name}, {f.thenYear} → {f.nowYear ?? "now"}.{" "}
+        {f.nowImage ? (
+          <>
+            Drag the handle — {f.name}, {f.thenYear} → {f.nowYear ?? "now"}.{" "}
+          </>
+        ) : (
+          <>
+            {f.name}, {f.thenYear}.{" "}
+          </>
+        )}
         <Link href={`/${f.slug}`} className="link">
           See the whole story →
         </Link>

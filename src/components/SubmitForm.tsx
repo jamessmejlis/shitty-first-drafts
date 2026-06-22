@@ -25,11 +25,8 @@ export function SubmitForm() {
   const [link, setLink] = useState("");
   const [story, setStory] = useState("");
   const [tactics, setTactics] = useState<Set<Tactic>>(new Set<Tactic>(["ugly-v1"]));
-  const [fileName, setFileName] = useState<string | null>(null);
-  const [dragging, setDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [issueUrl, setIssueUrl] = useState<string | null>(null);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   function toggle(t: Tactic) {
     setTactics((prev) => {
@@ -38,10 +35,6 @@ export function SubmitForm() {
       else next.add(t);
       return next;
     });
-  }
-
-  function pickFile(file: File | null | undefined) {
-    if (file) setFileName(file.name);
   }
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -183,39 +176,24 @@ export function SubmitForm() {
         </div>
       </div>
 
-      <div>
-        <div className="field__label">Proof (the embarrassing screenshot)</div>
-        <div
-          className={`dropzone${dragging ? " is-dragging" : ""}`}
-          onClick={() => fileRef.current?.click()}
-          onDragOver={(e) => {
-            e.preventDefault();
-            setDragging(true);
-          }}
-          onDragLeave={() => setDragging(false)}
-          onDrop={(e) => {
-            e.preventDefault();
-            setDragging(false);
-            pickFile(e.dataTransfer.files?.[0]);
-          }}
-        >
-          {fileName ? (
-            <>
-              ✓ {fileName} — you&apos;ll attach it on GitHub in the next step.
-            </>
-          ) : (
+      <div className="field-row">
+        <Dropzone
+          label="Proof: the ugly &lsquo;before&rsquo;"
+          hint={
             <>
               Drop your ugly v1 screenshot here, or <span className="link">browse</span>. It&apos;s
               attached on GitHub, where it&apos;s stored.
             </>
-          )}
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/*"
-            onChange={(e) => pickFile(e.target.files?.[0])}
-          />
-        </div>
+          }
+        />
+        <Dropzone
+          label="The now / after (optional)"
+          hint={
+            <>
+              Got a glow-up? Drop the now/after shot for a before &rarr; after slider. Optional.
+            </>
+          }
+        />
       </div>
 
       {error && (
@@ -231,5 +209,50 @@ export function SubmitForm() {
         <span className="submit-aside">No polish required. Seriously.</span>
       </div>
     </form>
+  );
+}
+
+/** A cosmetic file picker. The image is attached on the GitHub issue (where it's
+ *  stored), not uploaded here — so this just shows the chosen filename and a
+ *  reminder. Each instance owns its own state. */
+function Dropzone({ label, hint }: { label: string; hint: React.ReactNode }) {
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  function pick(file: File | null | undefined) {
+    if (file) setFileName(file.name);
+  }
+
+  return (
+    <div>
+      <div className="field__label">{label}</div>
+      <div
+        className={`dropzone${dragging ? " is-dragging" : ""}`}
+        onClick={() => fileRef.current?.click()}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragging(true);
+        }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragging(false);
+          pick(e.dataTransfer.files?.[0]);
+        }}
+      >
+        {fileName ? (
+          <>✓ {fileName} — you&apos;ll attach it on GitHub in the next step.</>
+        ) : (
+          hint
+        )}
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          onChange={(e) => pick(e.target.files?.[0])}
+        />
+      </div>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StaticShot } from "@/components/StaticShot";
 import {
   communityEntries,
   entries,
@@ -70,19 +71,31 @@ export default async function EntryPage({
         {lead && <p className="entry__lead">{lead}</p>}
 
         <div className="ba-frame">
-          <BeforeAfter
-            height={470}
-            priority
-            beforeSrc={entry.thenImage}
-            afterSrc={entry.nowImage ?? entry.thenImage}
-            beforeAlt={`${entry.name} in ${entry.thenYear}`}
-            afterAlt={`${entry.name} in ${entry.nowYear ?? "now"}`}
-            beforeBadge={`${era} · ${entry.thenYear}`}
-            afterBadge={`${era} · ${entry.nowYear ?? "now"}`}
-          />
+          {entry.nowImage ? (
+            <BeforeAfter
+              height={470}
+              priority
+              beforeSrc={entry.thenImage}
+              afterSrc={entry.nowImage}
+              beforeAlt={`${entry.name} in ${entry.thenYear}`}
+              afterAlt={`${entry.name} in ${entry.nowYear ?? "now"}`}
+              beforeBadge={`${era} · ${entry.thenYear}`}
+              afterBadge={`${era} · ${entry.nowYear ?? "now"}`}
+            />
+          ) : (
+            <StaticShot
+              height={470}
+              priority
+              src={entry.thenImage}
+              alt={`${entry.name} in ${entry.thenYear}`}
+              badge={`${era} · ${entry.thenYear}`}
+            />
+          )}
         </div>
         <p className="caption">
-          Drag the handle — {entry.name}, {entry.thenYear} → {entry.nowYear ?? "now"}.
+          {entry.nowImage
+            ? `Drag the handle — ${entry.name}, ${entry.thenYear} → ${entry.nowYear ?? "now"}.`
+            : `${entry.name}, ${entry.thenYear}.`}
         </p>
         {entry.imageCredit && <p className="caption caption--credit">{entry.imageCredit}</p>}
 
