@@ -5,6 +5,10 @@ community wall of founders shipping ugly right now.
 
 ## Commands
 - `bun install` · `bun run dev` · `bun run build` · `bun test`
+- `bun run clean` (`rm -rf .next`) — run this if the dev server flashes/reloads in a loop.
+  Cause: `next build` (Turbopack, Next 16) writes production artifacts into `.next`; a later
+  `next dev` against that same dir panics ("Next.js package not found") and reload-loops. Don't
+  interleave `build` and `dev` on the same `.next` — `bun run clean` between them.
 
 ## Conventions
 - All content lives in `src/data/entries.ts`; screenshots in `public/screenshots/`.
