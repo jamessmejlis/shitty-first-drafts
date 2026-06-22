@@ -5,6 +5,7 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { TodoSeam } from "@/components/TodoSeam";
+import { imageAspect } from "@/lib/imageAspect";
 import {
   communityEntries,
   famousByTactic,
@@ -17,6 +18,7 @@ import { hoffmanQuote } from "@/lib/site";
 export default function Home() {
   const f = featuredEntry;
   const era = f.name.toUpperCase();
+  const fAspect = imageAspect(f.thenImage);
 
   return (
     <div className="wrap">
@@ -32,8 +34,8 @@ export default function Home() {
       <div className="ba-frame">
         {f.nowImage ? (
           <BeforeAfter
-            height={480}
             priority
+            aspect={fAspect}
             beforeSrc={f.thenImage}
             afterSrc={f.nowImage}
             beforeAlt={`${f.name} in ${f.thenYear}`}
@@ -43,8 +45,8 @@ export default function Home() {
           />
         ) : (
           <StaticShot
-            height={480}
             priority
+            aspect={fAspect}
             src={f.thenImage}
             alt={`${f.name} in ${f.thenYear}`}
             badge={`${era} · ${f.thenYear}`}

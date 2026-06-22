@@ -10,8 +10,9 @@ type Props = {
   afterAlt: string;
   beforeBadge?: string;
   afterBadge?: string;
-  /** Frame height in px — 480 on home, 470 on entry (capped shorter on mobile via CSS). */
-  height: number;
+  /** width / height of the BEFORE image — sizes the frame so the whole shot
+   *  shows with no letterbox bands and no dead drag space (measured at build). */
+  aspect: number;
   priority?: boolean;
 };
 
@@ -19,7 +20,11 @@ const clamp = (n: number) => Math.max(0, Math.min(100, n));
 
 /** Horizontal drag-to-reveal. The before layer is always fully painted; the
  *  after layer is clipped via clip-path so only the portion right of the handle
- *  shows. Pointer + touch + keyboard driven. */
+ *  shows. Pointer + touch + keyboard driven.
+ *
+ *  The frame is sized to the before image's aspect ratio, so the before fills it
+ *  with no crop; a slightly different now/then ratio crops a hair (object-fit:
+ *  cover) rather than letterboxing. */
 export function BeforeAfter({
   beforeSrc,
   afterSrc,
@@ -27,7 +32,7 @@ export function BeforeAfter({
   afterAlt,
   beforeBadge,
   afterBadge,
-  height,
+  aspect,
   priority = false,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -72,7 +77,7 @@ export function BeforeAfter({
     <div
       ref={ref}
       className="ba"
-      style={{ height }}
+      style={{ aspectRatio: String(aspect) }}
       role="slider"
       aria-label={`Reveal slider: ${beforeAlt} versus ${afterAlt}`}
       aria-valuemin={0}

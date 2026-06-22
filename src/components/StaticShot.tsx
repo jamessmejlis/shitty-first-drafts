@@ -3,18 +3,20 @@ import Image from "next/image";
 type Props = {
   src: string;
   alt: string;
+  /** width / height — sizes the frame to the image so it shows whole, no bands. */
+  aspect: number;
   badge?: string;
-  /** Frame height in px — matches the slider (480 home, 470 entry). */
-  height: number;
   priority?: boolean;
 };
 
 /** A single screenshot in the same framed box as the before/after slider, but
  *  static — used for entries with only one image (no `nowImage`), so we don't
- *  show a slider that just reveals the same picture twice. */
-export function StaticShot({ src, alt, badge, height, priority = false }: Props) {
+ *  show a slider that just reveals the same picture twice. The frame is sized to
+ *  the image's aspect ratio (measured at build), so the whole shot shows with no
+ *  crop and no letterbox bands. */
+export function StaticShot({ src, alt, aspect, badge, priority = false }: Props) {
   return (
-    <div className="ba ba--static" style={{ height }}>
+    <div className="ba ba--static" style={{ aspectRatio: String(aspect) }}>
       <div className="ba__layer">
         <Image
           src={src}

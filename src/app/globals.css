@@ -161,7 +161,9 @@ img { max-width: 100%; height: auto; }
 .ba {
   position: relative;
   width: 100%;
-  height: 100%;
+  /* Default until the before/single image is measured (JS sets the real ratio
+     inline), so the box reserves height and minimises layout shift. */
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--paper);
   cursor: ew-resize;
@@ -171,7 +173,10 @@ img { max-width: 100%; height: auto; }
 .ba:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .ba--static { cursor: default; }
 .ba__layer { position: absolute; inset: 0; }
-.ba__img { object-fit: contain; object-position: center; }
+/* The box is sized to the image's aspect ratio, so cover fills it with no crop;
+   for two-image sliders a slightly different now/then ratio crops a hair rather
+   than letterboxing. */
+.ba__img { object-fit: cover; object-position: center; }
 .ba__badge {
   position: absolute;
   z-index: 2;
@@ -531,7 +536,6 @@ img { max-width: 100%; height: auto; }
     gap: 24px;
   }
   .entry__file { border-left: none; padding-left: 0; }
-  .ba { max-height: 340px; } /* keep the taller desktop slider from going portrait on phones */
   .submit-form-col { border-right: none; border-bottom: 1px solid var(--ink); }
   .hero__h1 { font-size: 32px; }
   .entry__name { font-size: 36px; }

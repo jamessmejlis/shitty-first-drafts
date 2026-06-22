@@ -52,12 +52,31 @@ Date: 2026-06-23
   plainly ("Name, year") with no drag instruction. The hero keeps its
   "See the whole story →" link in both branches.
 
-### C. Sizing — letterbox
+### C. Sizing — aspect-adaptive frame
 
-- `src/app/globals.css`: `.ba__img` → `object-fit: contain; object-position: center;`.
-  The frame's existing `background: var(--paper)` (white) becomes clean letterbox
-  margin, so the whole screenshot shows with breathing room. Add
-  `.ba--static { cursor: default; }`.
+Initial attempt was "letterbox everywhere" (`object-fit: contain`), but that gives
+the 4:3 famous screenshots big white side-bands and a slider that drags over dead
+space (the frame is ~2.1:1, wider than those images). Final approach: **size the
+frame to each image's aspect ratio** so the whole shot shows with no bands and no
+crop.
+
+Aspect ratios are read at **build time** (not measured in the browser) so the
+layout is fully server-rendered — no layout shift, no JS dependency, and grep-able
+in the prerendered HTML.
+
+- `src/lib/imageAspect.ts`: reads an image's intrinsic `width/height` from
+  `/public` via a tiny zero-dependency PNG/JPEG header parser (the formats we
+  ship), returning `width / height`; falls back to `16/10` if unreadable. Unit
+  test cross-checks it against `sips`.
+- `BeforeAfter` / `StaticShot`: drop the fixed `height` prop; take an `aspect`
+  prop and set `style={{ aspectRatio }}` on the `.ba` box. With no client
+  measurement, `StaticShot` is a plain server component.
+- Both server call sites compute `imageAspect(entry.thenImage)` and pass it down.
+- `src/app/globals.css`: `.ba` uses `aspect-ratio: 16 / 10` as a fallback
+  (always overridden inline) instead of `height: 100%`; `.ba__img` stays
+  `object-fit: cover` (the box matches the before/single image, so cover fills it
+  with no crop; a slightly different now/then ratio crops a hair rather than
+  banding). Drop the mobile `max-height` cap. Add `.ba--static { cursor: default; }`.
 
 ## Out of scope (YAGNI)
 

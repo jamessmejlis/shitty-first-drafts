@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StaticShot } from "@/components/StaticShot";
+import { imageAspect } from "@/lib/imageAspect";
 import {
   communityEntries,
   entries,
@@ -51,6 +52,7 @@ export default async function EntryPage({
   const prev = entries[idx - 1];
   const next = entries[idx + 1];
   const era = entry.name.toUpperCase();
+  const thenAspect = imageAspect(entry.thenImage);
 
   const tactics = entry.tactics ?? [entry.tactic];
   const fileStats = entry.fileStats ?? [{ label: "Founded", value: String(entry.thenYear) }];
@@ -73,8 +75,8 @@ export default async function EntryPage({
         <div className="ba-frame">
           {entry.nowImage ? (
             <BeforeAfter
-              height={470}
               priority
+              aspect={thenAspect}
               beforeSrc={entry.thenImage}
               afterSrc={entry.nowImage}
               beforeAlt={`${entry.name} in ${entry.thenYear}`}
@@ -84,8 +86,8 @@ export default async function EntryPage({
             />
           ) : (
             <StaticShot
-              height={470}
               priority
+              aspect={thenAspect}
               src={entry.thenImage}
               alt={`${entry.name} in ${entry.thenYear}`}
               badge={`${era} · ${entry.thenYear}`}
