@@ -10,6 +10,13 @@ body:
       placeholder: "@yourname"
     validations: { required: true }
   - type: input
+    id: founder_link
+    attributes:
+      label: Your link
+      description: X, site, GitHub — where should we credit you? Optional; we'll fall back to your product link.
+      placeholder: https://x.com/you
+    validations: { required: false }
+  - type: input
     id: product
     attributes:
       label: Product

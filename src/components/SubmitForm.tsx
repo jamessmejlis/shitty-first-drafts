@@ -20,6 +20,7 @@ const ISSUE_TEMPLATE = "submit-your-ugly-mvp.yml";
  *  founder attaches the embarrassing screenshot there (GitHub stores it). */
 export function SubmitForm() {
   const [handle, setHandle] = useState("");
+  const [founderLink, setFounderLink] = useState("");
   const [product, setProduct] = useState("");
   const [link, setLink] = useState("");
   const [story, setStory] = useState("");
@@ -46,6 +47,7 @@ export function SubmitForm() {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const h = handle.trim();
+    const fl = founderLink.trim();
     const p = product.trim();
     const l = link.trim();
     const s = story.trim();
@@ -71,6 +73,7 @@ export function SubmitForm() {
       template: ISSUE_TEMPLATE,
       title: `Ugly MVP: ${p}`,
       handle: h,
+      founder_link: fl,
       product: p,
       link: l,
       story: s,
@@ -103,15 +106,27 @@ export function SubmitForm() {
 
   return (
     <form className="fields" onSubmit={onSubmit} noValidate>
-      <div>
-        <div className="field__label">Your handle</div>
-        <input
-          className="input"
-          value={handle}
-          onChange={(e) => setHandle(e.target.value)}
-          placeholder="@yourname"
-          aria-label="Your handle"
-        />
+      <div className="field-row">
+        <div>
+          <div className="field__label">Your handle</div>
+          <input
+            className="input"
+            value={handle}
+            onChange={(e) => setHandle(e.target.value)}
+            placeholder="@yourname"
+            aria-label="Your handle"
+          />
+        </div>
+        <div>
+          <div className="field__label">Your link</div>
+          <input
+            className="input"
+            value={founderLink}
+            onChange={(e) => setFounderLink(e.target.value)}
+            placeholder="x.com/you — optional"
+            aria-label="Your link (optional)"
+          />
+        </div>
       </div>
 
       <div className="field-row">
